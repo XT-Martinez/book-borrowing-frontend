@@ -8,7 +8,7 @@
 						<h6 class="col-12">
 							<input type="radio" id="filter_type" value="1" v-model.number="filter.filter_type"/> Filter By Month/Year
 						</h6>
-						<div class="col-12">
+						<div class="col-6">
 							<label class="form-check-label b" for="isMonthly">Month</label>
 							<select
 								v-model="filter.month"
@@ -19,7 +19,7 @@
 								v-for="month in months"> {{ month.name }} </option>
 							</select>
 						</div>
-						<div class="col-12">
+						<div class="col-6">
 							<label class="form-check-label b" for="isMonthly">Year</label>
 							<select
 								v-model="filter.year"
@@ -35,12 +35,12 @@
 						<h6 class="col-12">
 							<input type="radio" id="filter_type" value="2" v-model.number="filter.filter_type"/> Filter By Date Range
 						</h6>
-						<div class="col-lg-6">
+						<div class="col-6">
 							<label class="form-check-label b">Start Date</label>
 							<input type="text" class="form-control datepicker" placeholder="MM-DD-YYYY"
 								v-model="filter.start_date">
 						</div>
-						<div class="col-lg-6">
+						<div class="col-6">
 							<label class="form-check-label b">End Date</label>
 							<input type="text" class="form-control datepicker" placeholder="MM-DD-YYYY"
 								v-model="filter.end_date">
@@ -72,8 +72,6 @@
 
 <script>
 import DateTimeHelper from '../../helpers/DateTime'
-import JQuery from 'jquery'
-const $ = JQuery;
 
 export default {
 	name: 'FilterForm',

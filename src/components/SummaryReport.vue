@@ -175,7 +175,8 @@
 					.printReport(this.collections,
 						this.studentReport.gradeLevelTotals,
 						this.personnelReport,
-						this.departmentReport
+						this.departmentReport,
+						this.filter
 					).open();
 			},
 

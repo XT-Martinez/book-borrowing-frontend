@@ -4,7 +4,7 @@
 		<h4>Borrowing Statistics by Department</h4>
 		
 		<table
-			class="table table-striped table-bordered table-sm">
+			class="table table-striped table-bordered table-sm table-responsive">
 
 			<thead align="center"> 
 

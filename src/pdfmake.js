@@ -1,5 +1,7 @@
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
+import DateTimeHelper from './helpers/DateTime';
+
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export default {
@@ -188,13 +190,61 @@ export default {
       return table;
    },
 
-   printReport(collections, studentReport, personnelReport, departmentReport) {
+   makeFilterDescription(filter) {
+      let content = [ ];
+
+      let tableBody = [];
+
+      switch(filter.filter_type) {
+         case 1:
+            content.push({text: 'Filter by Month/Year', style: 'h1'});
+            let month = DateTimeHelper.
+               getMonths()
+               .filter(e => e.id === filter.month)[0].name;
+            tableBody.push([
+               {text: 'Month: ', style: 'h2'},
+               {text: month, bold: true}
+            ]);
+            tableBody.push([
+               {text: 'Year: ', style: 'h2'},
+               {text: filter.year, bold: true}
+            ]);
+            break;
+         case 2:
+            content.push({text: 'Filter by Date Range', style: 'h1'});
+            tableBody.push([
+               {text: 'Start Date: ', style: 'h2'},
+               {text: filter.start_date, bold: true}
+            ]);
+            tableBody.push([
+               {text: 'End Date: ', style: 'h2'},
+               {text: filter.end_date, bold: true}
+            ]);
+            break;
+      }
+
+      let table = {
+         // style: '',
+         table: {
+            body: tableBody,
+         },
+         layout: 'noBorders'
+      }
+
+      content.push(table);
+      return content;
+   },
+
+   printReport(collections, studentReport, personnelReport, departmentReport, filter) {
       
       let studentTable = this.makeStudentTable(collections, studentReport);
       let departmentTable = this.makeDepartmentTable(collections, personnelReport, departmentReport);
 
       let definition = {
          content: [
+            this.makeFilterDescription(filter),
+            // {canvas: [{ type: 'line', x1: 0, y1: 10, x2: 540-10, y2: 10, lineWidth: 0.5 }]},
+            '\n',
             {text: 'Borrowing Statistics for Students', style: 'h1'},
             {
                table: {

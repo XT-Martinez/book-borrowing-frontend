@@ -1,6 +1,6 @@
 <template>
 	<div id="CollectionLegend">
-		<h5>Legend</h5>
+		<!-- <h5>Legend</h5> -->
 		<table class="table table-sm table-bordered" id="legend">
 			<thead>
 				<tr class="table-warning">

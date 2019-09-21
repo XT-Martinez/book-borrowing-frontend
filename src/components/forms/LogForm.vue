@@ -33,7 +33,7 @@
 						<br>
 					</div>
 					<div 
-						class="col-lg-3"
+						class="col-lg-3 col-6"
 						v-bind:key="personnelGroup.id"
 						v-for="personnelGroup in getFaculty()">
 						
@@ -52,7 +52,7 @@
 						<br>
 					</div>
 					<div 
-						class="col-lg-3"
+						class="col-lg-3 col-6"
 						v-bind:key="personnelGroup.id"
 						v-for="personnelGroup in getNonFaculty()">
 						
@@ -74,7 +74,7 @@
 				<hr/>
 				<div class="row">
 					<div 
-						class="col-lg-3"
+						class="col-lg-3 col-6"
 						v-bind:key="gradeLevel.id"
 						v-for="gradeLevel in getGradeLevelFromSelectedDepartment()">
 						
@@ -96,7 +96,7 @@
 				<hr/>
 				<div class="row">
 					<div 
-						class="col-lg-3"
+						class="col-lg-3 col-6"
 						v-bind:key="section.id"
 						v-for="section in getSectionFromSelectedGradeLevel()">
 						
@@ -120,21 +120,21 @@
 					</div>
 					<div class="col-sm-6">
 						<div class="row">
-							<div class="col-sm-6" align="right">
+							<div class="col-6">
 								<h5>No. of Borrowers</h5>
 							</div>
-							<div class="col-sm-2">
+							<div class="col-2">
 								<input type="number" 
 									class="form-control form-control-sm txt-count"
 									min="1"
 									v-model="borrower_count">
 							</div>
-							<div class="col-sm-2">
+							<div class="col-2">
 								<button
 									@click="incrementBorrowerCount()"
 									class="btn btn-sm btn-block btn-outline-success b">+1</button>
 							</div>
-							<div class="col-sm-2">
+							<div class="col-2">
 								<button
 									@click="decrementBorrowerCount()"
 									class="btn btn-sm btn-block btn-outline-danger b">-1</button>
@@ -147,12 +147,12 @@
 					<div
 						v-bind:key="collection.id"
 						v-for="(collection, i) in Collections"
-						class="col-2">
-						<div class="card border-secondary mb-3 collection-card" style="max-width: 20rem;">
+						class="col-xl-2 col-lg-3 col-sm-6 col-6">
+						<div class="card border-secondary mb-3 collection-card">
 							<div class="card-header b collection-name">
 								<div class="row">
-									<div class="col-sm-6">{{collection.prefix}}</div>
-									<div class="col-sm-6">
+									<div class="col-6">{{collection.prefix}}</div>
+									<div class="col-6">
 										<input type="number" 
 											class="form-control form-control-sm txt-count" 
 											min="0"
@@ -175,12 +175,12 @@
 							</div>
 							<div class="card-footer bg-transparent">
 								<div class="row">
-									<div class="col-sm-6">
+									<div class="col-6">
 										<button
 											@click="incrementBorrowedCollection(collection.id)" 
 											class="btn btn-sm btn-block btn-outline-success b">+1</button>
 									</div>
-									<div class="col-sm-6">
+									<div class="col-6">
 										<button
 											@click="decrementBorrowedCollection(collection.id)" 
 											class="btn btn-sm btn-block btn-outline-danger b">-1</button>

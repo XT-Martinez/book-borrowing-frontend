@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default {
-   url: "http://localhost:3500/api/borrowing_doc",
+   url: `http://${location.hostname}:${3500}/api/borrowing_doc`,
 
    getAll() {
       return axios.get(this.url);
