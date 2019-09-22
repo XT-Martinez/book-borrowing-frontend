@@ -131,12 +131,12 @@
 							</div>
 							<div class="col-2">
 								<button
-									@click="incrementBorrowerCount()"
+									@click="incrementBorrowerCount"
 									class="btn btn-sm btn-block btn-outline-success b">+1</button>
 							</div>
 							<div class="col-2">
 								<button
-									@click="decrementBorrowerCount()"
+									@click="decrementBorrowerCount"
 									class="btn btn-sm btn-block btn-outline-danger b">-1</button>
 							</div>
 						</div>
@@ -148,46 +148,7 @@
 						v-bind:key="collection.id"
 						v-for="(collection, i) in Collections"
 						class="col-xl-2 col-lg-3 col-sm-6 col-6">
-						<div class="card border-secondary mb-3 collection-card">
-							<div class="card-header b collection-name">
-								<div class="row">
-									<div class="col-6">{{collection.prefix}}</div>
-									<div class="col-6">
-										<input type="number" 
-											class="form-control form-control-sm txt-count" 
-											min="0"
-											v-model.number="borrowedCollections[i].qty">
-									</div>
-								</div>
-								<!-- {{collection.prefix}} -->
-							</div>
-							<div class="card-body">
-								<!-- <h4 class="card-title"></h4> -->
-								<div class="row">
-									<div class="col-12">
-										<p class="card-text text-center">
-											{{collection.name}}
-										</p>
-									</div>
-								</div>											
-								<!-- <div class="collection-name">{{collection.name}}</div> -->
-							<!-- <p class="card-text"></p> -->
-							</div>
-							<div class="card-footer bg-transparent">
-								<div class="row">
-									<div class="col-6">
-										<button
-											@click="incrementBorrowedCollection(collection.id)" 
-											class="btn btn-sm btn-block btn-outline-success b">+1</button>
-									</div>
-									<div class="col-6">
-										<button
-											@click="decrementBorrowedCollection(collection.id)" 
-											class="btn btn-sm btn-block btn-outline-danger b">-1</button>
-									</div>
-								</div>
-							</div>
-						</div>
+						<CollectionCard v-model.number="borrowedCollections[i].qty" :collection="collection" />
 					</div>
 
 				</div>
@@ -244,6 +205,8 @@
 <script>
 	import AlertModal from '../alerts/AlertModal'
 
+	import CollectionCard from './CollectionCard'
+
 	import ResCollections from '../../resources/Collections'
 	import ResDepartments from '../../resources/Departments'
 	import ResGradeLevels from '../../resources/GradeLevels'
@@ -255,7 +218,8 @@
 		name: 'LogForm',
 
 		components: {
-			AlertModal
+			AlertModal,
+			CollectionCard
 		},
 
 		data() {
@@ -302,7 +266,7 @@
 
 		created() {
 			this.loadAll();
-			// setSelectedDepartment(1);
+			// this.setSelectedDepartment(1);
 		},
 
 		methods: {
@@ -422,28 +386,6 @@
 				});
 			},
 
-			incrementBorrowedCollection(collection_id) {
-				// this.borrowedCollections[prefix] = parseInt(this.borrowedCollections[prefix]) + 1;
-				let borrowedCollection = this.borrowedCollections
-					.filter(e => e.collection_id === collection_id) [0];
-				borrowedCollection.qty = parseInt(borrowedCollection.qty) + 1;
-
-				this.$forceUpdate();
-			},
-
-			decrementBorrowedCollection(collection_id) {
-				// if(this.borrowedCollections[prefix] > 0) {
-				// 	this.borrowedCollections[prefix] = parseInt(this.borrowedCollections[prefix]) - 1;
-				// 	this.$forceUpdate();
-				// }
-				let borrowedCollection = this.borrowedCollections
-					.filter(e => e.collection_id === collection_id) [0];
-				if(borrowedCollection.qty > 0) {
-					borrowedCollection.qty = parseInt(borrowedCollection.qty) - 1;
-					this.$forceUpdate();
-				}
-			},
-
 			incrementBorrowerCount() {
 				this.borrower_count = parseInt(this.borrower_count) + 1;
 				this.$forceUpdate();
@@ -526,29 +468,5 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	.form-control-xs {
-		font-size: 0.75em;
-	}
-
-	.txt-count {
-		font-size: 85%;
-		text-align: center;
-		font-weight: bold;
-		color: #3d3d3d;
-	}
-
-	.collection-card {
-		min-height: 12.5em !important;
-	}
-
-	input[type=number]::-webkit-inner-spin-button, 
-	input[type=number]::-webkit-outer-spin-button { 
-		-webkit-appearance: none; 
-		margin: 0; 
-	}
-
-	input[type=number] {
-		-moz-appearance:textfield; /* Firefox */
-	}
 
 </style>

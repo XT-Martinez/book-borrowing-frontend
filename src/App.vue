@@ -39,6 +39,4 @@ export default {
 	margin-top: auto;
 	margin-bottom: auto;
 }
-
-@import '~font-awesome/css/font-awesome.min.css';
 </style>
